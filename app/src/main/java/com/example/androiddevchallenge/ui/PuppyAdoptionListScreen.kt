@@ -18,7 +18,10 @@ package com.example.androiddevchallenge.ui
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredHeight
+import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -29,12 +32,15 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieAnimationSpec
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.getPuppies
 import com.example.androiddevchallenge.model.Puppy
@@ -92,7 +98,7 @@ fun PuppyItem(puppy: Puppy) {
                 style = MaterialTheme.typography.h4
             )
 
-            val dogLogo = painterResource(id = R.drawable.ic_dog)
+            val animationSpec = remember { LottieAnimationSpec.RawRes(R.raw.french_bulldog) }
 
             GlideImage(
                 data = puppy.picture,
@@ -108,20 +114,15 @@ fun PuppyItem(puppy: Puppy) {
                         )
                     }
                     is ImageLoadState.Error -> {
-                        Image(
-                            painter = dogLogo,
-                            contentDescription = "Error",
-                            colorFilter = ColorFilter.tint(
-                                Color.Red
-                            ),
-                            modifier = Modifier.width(150.dp)
+                        LottieAnimation(
+                            animationSpec,
+                            modifier = Modifier.requiredWidth(80.dp).requiredHeight(150.dp)
                         )
                     }
                     is ImageLoadState.Loading -> {
-                        Image(
-                            painter = dogLogo,
-                            contentDescription = "Loading",
-                            modifier = Modifier.width(150.dp)
+                        LottieAnimation(
+                            animationSpec,
+                            modifier = Modifier.requiredWidth(80.dp).requiredHeight(150.dp)
                         )
                     }
                     is ImageLoadState.Empty -> {
