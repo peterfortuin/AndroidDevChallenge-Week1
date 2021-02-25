@@ -15,20 +15,33 @@
  */
 package com.example.androiddevchallenge.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.BottomAppBar
+import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.R
+import com.example.androiddevchallenge.getPuppies
 import com.example.androiddevchallenge.model.Puppy
 import com.example.androiddevchallenge.ui.theme.MyTheme
+import dev.chrisbanes.accompanist.glide.GlideImage
+import dev.chrisbanes.accompanist.imageloading.ImageLoadState
+import dev.chrisbanes.accompanist.imageloading.MaterialLoadingImage
 
 @Composable
 fun PuppyAdoptionScreen() {
@@ -50,15 +63,9 @@ fun PuppyAdoptionScreen() {
 
 @Composable
 fun PuppyList() {
-    val puppies = listOf<Puppy>(
-        Puppy("Dog 1", ""),
-        Puppy("Dog 2", ""),
-        Puppy("Dog 3", ""),
-        Puppy("Dog 4", ""),
-        Puppy("Dog 5", ""),
-        Puppy("Dog 6", ""),
-    )
-    LazyColumn() {
+    val puppies = getPuppies()
+
+    LazyColumn {
         items(
             puppies,
             itemContent = { puppy ->
@@ -70,8 +77,58 @@ fun PuppyList() {
 
 @Composable
 fun PuppyItem(puppy: Puppy) {
-    Row(modifier = Modifier.padding(10.dp)) {
-        Text(text = puppy.name)
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp),
+        elevation = 3.dp
+    ) {
+        Row(modifier = Modifier.fillMaxWidth()) {
+            Text(
+                text = puppy.name,
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 10.dp, top = 10.dp),
+                style = MaterialTheme.typography.h4
+            )
+
+            val dogLogo = painterResource(id = R.drawable.ic_dog)
+
+            GlideImage(
+                data = puppy.picture,
+            ) { imageState ->
+                when (imageState) {
+                    is ImageLoadState.Success -> {
+                        MaterialLoadingImage(
+                            result = imageState,
+                            puppy.name,
+                            fadeInEnabled = true,
+                            fadeInDurationMs = 600,
+                            modifier = Modifier.width(150.dp)
+                        )
+                    }
+                    is ImageLoadState.Error -> {
+                        Image(
+                            painter = dogLogo,
+                            contentDescription = "Error",
+                            colorFilter = ColorFilter.tint(
+                                Color.Red
+                            ),
+                            modifier = Modifier.width(150.dp)
+                        )
+                    }
+                    is ImageLoadState.Loading -> {
+                        Image(
+                            painter = dogLogo,
+                            contentDescription = "Loading",
+                            modifier = Modifier.width(150.dp)
+                        )
+                    }
+                    is ImageLoadState.Empty -> {
+                    }
+                }
+            }
+        }
     }
 }
 
