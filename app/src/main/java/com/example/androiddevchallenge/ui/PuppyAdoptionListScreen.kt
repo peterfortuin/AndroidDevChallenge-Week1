@@ -41,6 +41,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieAnimationSpec
+import com.airbnb.lottie.compose.rememberLottieAnimationState
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.getPuppies
 import com.example.androiddevchallenge.model.Puppy
@@ -115,6 +116,10 @@ fun PuppyCard(puppy: Puppy, isFirst: Boolean, isLast: Boolean) {
             }
 
             val animationSpec = remember { LottieAnimationSpec.RawRes(R.raw.french_bulldog) }
+            val animationState = rememberLottieAnimationState(
+                autoPlay = true,
+                repeatCount = Int.MAX_VALUE
+            )
 
             Row(
                 modifier = Modifier
@@ -137,13 +142,15 @@ fun PuppyCard(puppy: Puppy, isFirst: Boolean, isLast: Boolean) {
                         is ImageLoadState.Error -> {
                             LottieAnimation(
                                 animationSpec,
-                                modifier = Modifier.align(Alignment.Center)
+                                modifier = Modifier.align(Alignment.Center),
+                                animationState = animationState
                             )
                         }
                         is ImageLoadState.Loading -> {
                             LottieAnimation(
                                 animationSpec,
-                                modifier = Modifier.align(Alignment.Center)
+                                modifier = Modifier.align(Alignment.Center),
+                                animationState = animationState
                             )
                         }
                         is ImageLoadState.Empty -> {
