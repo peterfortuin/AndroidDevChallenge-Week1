@@ -15,13 +15,18 @@
  */
 package com.example.androiddevchallenge.ui
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -31,6 +36,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.airbnb.lottie.compose.LottieAnimation
@@ -63,31 +69,50 @@ fun PuppyList() {
     val puppies = getPuppies()
 
     LazyColumn {
-        items(
+        itemsIndexed(
             puppies,
-            itemContent = { puppy ->
-                PuppyItem(puppy)
+            itemContent = { index, puppy ->
+                PuppyCard(puppy, index == 0, index == puppies.size - 1)
             }
         )
     }
 }
 
 @Composable
-fun PuppyItem(puppy: Puppy) {
+fun PuppyCard(puppy: Puppy, isFirst: Boolean, isLast: Boolean) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp),
+            .padding(
+                start = 10.dp,
+                end = 10.dp,
+                top = if (isFirst) 10.dp else 5.dp,
+                bottom = if (isLast) 10.dp else 5.dp
+            ),
         elevation = 3.dp
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
-            Text(
-                text = puppy.name,
+            Column(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(start = 10.dp, top = 10.dp),
-                style = MaterialTheme.typography.h4
-            )
+                    .fillMaxHeight()
+            ) {
+                Text(
+                    text = puppy.name,
+                    modifier = Modifier
+                        .padding(start = 10.dp, top = 10.dp),
+                    style = MaterialTheme.typography.h5
+                )
+
+                Button(
+                    onClick = { /*TODO*/ },
+                    Modifier
+                        .padding(start = 10.dp, bottom = 10.dp),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.White), border = BorderStroke(0.dp, Color.White)
+                ) {
+                    Text(text = "Details")
+                }
+            }
 
             val animationSpec = remember { LottieAnimationSpec.RawRes(R.raw.french_bulldog) }
 
