@@ -56,7 +56,7 @@ fun MyApp() {
                 val puppyName = backStackEntry.arguments?.getString("puppyName")
                 val puppy = getPuppies().find { puppy -> puppy.name == puppyName }
                 puppy?.let {
-                    PuppyDetailsScreen(puppy = it)
+                    PuppyDetailsScreen(puppy = it, actions.navigateBack)
                 }
             }
         }
@@ -66,6 +66,10 @@ fun MyApp() {
 class NavActions(navController: NavHostController) {
     val openPuppy: (String) -> Unit = { puppyName ->
         navController.navigate("details/$puppyName")
+    }
+
+    val navigateBack: () -> Unit = {
+        navController.popBackStack()
     }
 }
 

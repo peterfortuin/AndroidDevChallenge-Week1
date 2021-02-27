@@ -28,7 +28,7 @@ import com.example.androiddevchallenge.model.Puppy
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 @Composable
-fun PuppyDetailsScreen(puppy: Puppy) {
+fun PuppyDetailsScreen(puppy: Puppy, navigateBack: () -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -36,7 +36,9 @@ fun PuppyDetailsScreen(puppy: Puppy) {
                     Text(text = puppy.name)
                 },
                 navigationIcon = {
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = {
+                        navigateBack()
+                    }) {
                         Icon(Icons.Filled.ArrowBack, "Back")
                     }
                 }
@@ -49,7 +51,7 @@ fun PuppyDetailsScreen(puppy: Puppy) {
 @Composable
 fun PuppyDetailsScreenLightPreview() {
     MyTheme {
-        PuppyDetailsScreen(Puppy("Puppy", ""))
+        PuppyDetailsScreen(Puppy("Puppy", "")) {}
     }
 }
 
@@ -57,6 +59,6 @@ fun PuppyDetailsScreenLightPreview() {
 @Composable
 fun PuppyDetailsScreenDarkPreview() {
     MyTheme(darkTheme = true) {
-        PuppyDetailsScreen(Puppy("Puppy", ""))
+        PuppyDetailsScreen(Puppy("Puppy", "")) {}
     }
 }
