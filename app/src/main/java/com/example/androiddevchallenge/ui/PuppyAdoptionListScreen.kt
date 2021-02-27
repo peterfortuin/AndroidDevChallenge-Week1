@@ -101,14 +101,14 @@ fun PuppyCard(puppy: Puppy, isFirst: Boolean, isLast: Boolean) {
                 Text(
                     text = puppy.name,
                     modifier = Modifier
-                        .padding(start = 10.dp, top = 10.dp),
+                        .padding(start = 20.dp, top = 20.dp),
                     style = MaterialTheme.typography.h5
                 )
 
                 Button(
                     onClick = { /*TODO*/ },
                     Modifier
-                        .padding(start = 10.dp, bottom = 10.dp),
+                        .padding(start = 20.dp, top = 40.dp),
                     colors = ButtonDefaults.buttonColors(backgroundColor = Color.White), border = BorderStroke(0.dp, Color.White)
                 ) {
                     Text(text = "Details")
