@@ -36,9 +36,11 @@ fun PuppyDetailsScreen(puppy: Puppy, navigateBack: () -> Unit) {
                     Text(text = puppy.name)
                 },
                 navigationIcon = {
-                    IconButton(onClick = {
-                        navigateBack()
-                    }) {
+                    IconButton(
+                        onClick = {
+                            navigateBack()
+                        }
+                    ) {
                         Icon(Icons.Filled.ArrowBack, "Back")
                     }
                 }
