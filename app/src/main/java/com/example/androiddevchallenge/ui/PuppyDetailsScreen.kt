@@ -15,17 +15,23 @@
  */
 package com.example.androiddevchallenge.ui
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.model.Puppy
 import com.example.androiddevchallenge.ui.theme.MyTheme
+import dev.chrisbanes.accompanist.glide.GlideImage
 
 @Composable
 fun PuppyDetailsScreen(puppy: Puppy, navigateBack: () -> Unit) {
@@ -46,7 +52,18 @@ fun PuppyDetailsScreen(puppy: Puppy, navigateBack: () -> Unit) {
                 }
             )
         }
-    ) {}
+    ) {
+        Column {
+            GlideImage(data = puppy.picture, puppy.name)
+
+            Text(
+                text = puppy.name,
+                modifier = Modifier
+                    .padding(start = 20.dp, top = 20.dp),
+                style = MaterialTheme.typography.h3
+            )
+        }
+    }
 }
 
 @Preview("Light Theme", widthDp = 360, heightDp = 640)
