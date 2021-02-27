@@ -21,8 +21,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigate
+import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.ui.PuppyAdoptionScreen
+import com.example.androiddevchallenge.ui.PuppyDetailsScreen
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {
@@ -40,7 +47,25 @@ class MainActivity : AppCompatActivity() {
 @Composable
 fun MyApp() {
     Surface(color = MaterialTheme.colors.background) {
-        PuppyAdoptionScreen()
+        val navController = rememberNavController()
+        val actions = remember(navController) { NavActions(navController) }
+
+        NavHost(navController, startDestination = "list") {
+            composable("list") { PuppyAdoptionScreen(actions.openPuppy) }
+            composable("details/{puppyName}") { backStackEntry ->
+                val puppyName = backStackEntry.arguments?.getString("puppyName")
+                val puppy = getPuppies().find { puppy -> puppy.name == puppyName }
+                puppy?.let {
+                    PuppyDetailsScreen(puppy = it)
+                }
+            }
+        }
+    }
+}
+
+class NavActions(navController: NavHostController) {
+    val openPuppy: (String) -> Unit = { puppyName ->
+        navController.navigate("details/$puppyName")
     }
 }
 

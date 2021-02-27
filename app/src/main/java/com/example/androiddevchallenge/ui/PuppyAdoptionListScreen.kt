@@ -51,7 +51,7 @@ import dev.chrisbanes.accompanist.imageloading.ImageLoadState
 import dev.chrisbanes.accompanist.imageloading.MaterialLoadingImage
 
 @Composable
-fun PuppyAdoptionScreen() {
+fun PuppyAdoptionScreen(openPuppy: (String) -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -61,26 +61,26 @@ fun PuppyAdoptionScreen() {
             )
         }
     ) {
-        PuppyList()
+        PuppyList(openPuppy)
     }
 }
 
 @Composable
-fun PuppyList() {
+fun PuppyList(openPuppy: (String) -> Unit) {
     val puppies = getPuppies()
 
     LazyColumn {
         itemsIndexed(
             puppies,
             itemContent = { index, puppy ->
-                PuppyCard(puppy, index == 0, index == puppies.size - 1)
+                PuppyCard(puppy, index == 0, index == puppies.size - 1, openPuppy)
             }
         )
     }
 }
 
 @Composable
-fun PuppyCard(puppy: Puppy, isFirst: Boolean, isLast: Boolean) {
+fun PuppyCard(puppy: Puppy, isFirst: Boolean, isLast: Boolean, openPuppy: (String) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -106,7 +106,9 @@ fun PuppyCard(puppy: Puppy, isFirst: Boolean, isLast: Boolean) {
                 )
 
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        openPuppy(puppy.name)
+                    },
                     Modifier
                         .padding(start = 20.dp, top = 40.dp),
                     colors = ButtonDefaults.buttonColors(backgroundColor = Color.White), border = BorderStroke(0.dp, Color.White)
@@ -166,7 +168,7 @@ fun PuppyCard(puppy: Puppy, isFirst: Boolean, isLast: Boolean) {
 @Composable
 fun LightPreview() {
     MyTheme {
-        PuppyAdoptionScreen()
+        PuppyAdoptionScreen {}
     }
 }
 
@@ -174,6 +176,6 @@ fun LightPreview() {
 @Composable
 fun DarkPreview() {
     MyTheme(darkTheme = true) {
-        PuppyAdoptionScreen()
+        PuppyAdoptionScreen {}
     }
 }
