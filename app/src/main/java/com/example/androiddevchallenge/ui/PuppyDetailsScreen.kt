@@ -15,9 +15,13 @@
  */
 package com.example.androiddevchallenge.ui
 
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.androiddevchallenge.model.Puppy
@@ -29,7 +33,12 @@ fun PuppyDetailsScreen(puppy: Puppy) {
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = "Adopt a pup!")
+                    Text(text = puppy.name)
+                },
+                navigationIcon = {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(Icons.Filled.ArrowBack, "Back")
+                    }
                 }
             )
         }
@@ -42,7 +51,7 @@ fun PuppyDetailsScreen(puppy: Puppy) {
 @Composable
 fun PuppyDetailsScreenLightPreview() {
     MyTheme {
-        PuppyDetailsScreen(Puppy("", ""))
+        PuppyDetailsScreen(Puppy("Puppy", ""))
     }
 }
 
@@ -50,6 +59,6 @@ fun PuppyDetailsScreenLightPreview() {
 @Composable
 fun PuppyDetailsScreenDarkPreview() {
     MyTheme(darkTheme = true) {
-        PuppyDetailsScreen(Puppy("", ""))
+        PuppyDetailsScreen(Puppy("Puppy", ""))
     }
 }
