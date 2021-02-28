@@ -15,13 +15,18 @@
  */
 package com.example.androiddevchallenge.ui
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -30,11 +35,14 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.model.Puppy
@@ -82,7 +90,11 @@ fun PuppyDetailsScreen(puppy: Puppy, navigateBack: () -> Unit) {
                 style = MaterialTheme.typography.h3
             )
 
-            Row(modifier = Modifier.fillMaxWidth().padding(20.dp)) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
                 Column(modifier = Modifier.fillMaxWidth(0.5f)) {
                     Text(text = "Age:")
                     Text(text = "Color:")
@@ -92,11 +104,51 @@ fun PuppyDetailsScreen(puppy: Puppy, navigateBack: () -> Unit) {
                     Text(text = puppy.color)
                 }
             }
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp)
+            ) {
+                val context = LocalContext.current
+                Button(
+                    onClick = {
+                        Toast.makeText(context, "You adopted ${puppy.name}!", Toast.LENGTH_SHORT).show()
+                    },
+                    shape = RoundedCornerShape(12.dp, 0.dp, 0.dp, 12.dp),
+                    modifier = Modifier
+                        .height(45.dp)
+                        .weight(1f)
+                        .padding(end = 1.dp)
+                ) {
+                    Text("Adopt me")
+                }
+                Button(
+                    onClick = {},
+                    shape = RoundedCornerShape(0.dp, 0.dp, 0.dp, 0.dp),
+                    modifier = Modifier
+                        .height(45.dp)
+                        .padding(end = 1.dp)
+                ) {
+                    Icon(Icons.Filled.Favorite, "Favorite")
+                }
+                Button(
+                    onClick = {
+                        Toast.makeText(context, "Sharing ${puppy.name}!", Toast.LENGTH_SHORT).show()
+                    },
+                    shape = RoundedCornerShape(0.dp, 12.dp, 12.dp, 0.dp),
+                    modifier = Modifier.height(45.dp)
+                ) {
+                    Icon(Icons.Filled.Share, "Sharing")
+                }
+            }
         }
     }
 }
 
-@Preview("Light Theme", widthDp = 360, heightDp = 640)
+@Preview("Light Theme", widthDp = 360, heightDp = 750)
 @Composable
 fun PuppyDetailsScreenLightPreview() {
     MyTheme {
@@ -104,7 +156,7 @@ fun PuppyDetailsScreenLightPreview() {
     }
 }
 
-@Preview("Dark Theme", widthDp = 360, heightDp = 640)
+@Preview("Dark Theme", widthDp = 360, heightDp = 750)
 @Composable
 fun PuppyDetailsScreenDarkPreview() {
     MyTheme(darkTheme = true) {
