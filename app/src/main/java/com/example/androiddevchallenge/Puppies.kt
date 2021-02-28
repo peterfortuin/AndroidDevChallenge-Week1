@@ -20,30 +20,38 @@ import com.example.androiddevchallenge.model.Puppy
 fun getPuppies() = listOf(
     Puppy(
         "Dog 1",
-        "https://images.pexels.com/photos/936317/pexels-photo-936317.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+        "https://images.pexels.com/photos/936317/pexels-photo-936317.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+        2,
+        "Brown/White"
     ),
     Puppy(
         "Dog 2",
-        "https://images.pexels.com/photos/179221/pexels-photo-179221.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+        "https://images.pexels.com/photos/179221/pexels-photo-179221.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+        3,
+        "Black/White"
     ),
     Puppy(
         "Dog 3",
-        "https://images.pexels.com/photos/1480913/pexels-photo-1480913.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+        "https://images.pexels.com/photos/1480913/pexels-photo-1480913.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+        6,
+        "Brown"
     ),
     Puppy(
         "Dog 4",
-        "https://images.pexels.com/photos/5321441/pexels-photo-5321441.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+        "https://images.pexels.com/photos/5321441/pexels-photo-5321441.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+        2,
+        "Light brown"
     ),
     Puppy(
         "Dog 5",
-        "https://images.pexels.com/photos/4597758/pexels-photo-4597758.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+        "https://images.pexels.com/photos/4597758/pexels-photo-4597758.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+        5,
+        "Light brown"
     ),
     Puppy(
         "Dog 6",
-        "https://images.pexels.com/photos/4695939/pexels-photo-4695939.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-    ),
-    Puppy(
-        "Dog 7",
-        "https://fdsfdsfdsfdsfsdffd/fdfdsfdsfsdf"
+        "https://images.pexels.com/photos/4695939/pexels-photo-4695939.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+        8,
+        "Black"
     ),
 )

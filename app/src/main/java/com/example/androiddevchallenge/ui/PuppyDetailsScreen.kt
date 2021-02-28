@@ -15,8 +15,13 @@
  */
 package com.example.androiddevchallenge.ui
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -26,7 +31,10 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.model.Puppy
@@ -54,7 +62,17 @@ fun PuppyDetailsScreen(puppy: Puppy, navigateBack: () -> Unit) {
         }
     ) {
         Column {
-            GlideImage(data = puppy.picture, puppy.name)
+            if (puppy.picture.isNotEmpty()) {
+                GlideImage(data = puppy.picture, puppy.name)
+            } else {
+                Box(
+                    modifier = Modifier
+                        .size(LocalConfiguration.current.screenWidthDp.dp)
+                        .background(Color.DarkGray)
+                ) {
+                    Text(text = "Image of puppy", modifier = Modifier.align(Alignment.Center))
+                }
+            }
 
             Text(
                 text = puppy.name,
@@ -62,6 +80,17 @@ fun PuppyDetailsScreen(puppy: Puppy, navigateBack: () -> Unit) {
                     .padding(start = 20.dp, top = 20.dp),
                 style = MaterialTheme.typography.h3
             )
+
+            Row(modifier = Modifier.fillMaxWidth().padding(20.dp)) {
+                Column(modifier = Modifier.fillMaxWidth(0.5f)) {
+                    Text(text = "Age:")
+                    Text(text = "Color:")
+                }
+                Column(modifier = Modifier.fillMaxWidth(0.5f)) {
+                    Text(text = "${puppy.age} years")
+                    Text(text = puppy.color)
+                }
+            }
         }
     }
 }
@@ -70,7 +99,7 @@ fun PuppyDetailsScreen(puppy: Puppy, navigateBack: () -> Unit) {
 @Composable
 fun PuppyDetailsScreenLightPreview() {
     MyTheme {
-        PuppyDetailsScreen(Puppy("Puppy", "")) {}
+        PuppyDetailsScreen(Puppy("Puppy", "", 4, "Black")) {}
     }
 }
 
@@ -78,6 +107,6 @@ fun PuppyDetailsScreenLightPreview() {
 @Composable
 fun PuppyDetailsScreenDarkPreview() {
     MyTheme(darkTheme = true) {
-        PuppyDetailsScreen(Puppy("Puppy", "")) {}
+        PuppyDetailsScreen(Puppy("Puppy", "", 6, "Grey")) {}
     }
 }
