@@ -20,42 +20,42 @@ import com.example.androiddevchallenge.model.Puppy
 
 fun getPuppies() = listOf(
     Puppy(
-        "Dog 1",
+        "Abby",
         "https://images.pexels.com/photos/936317/pexels-photo-936317.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
         2,
         "Brown/White",
         Color(0xffb4b2a6)
     ),
     Puppy(
-        "Dog 2",
+        "Brutus",
         "https://images.pexels.com/photos/179221/pexels-photo-179221.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
         3,
         "Black/White",
         Color(0xff585e6a)
     ),
     Puppy(
-        "Dog 3",
+        "Georgia",
         "https://images.pexels.com/photos/1480913/pexels-photo-1480913.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
         6,
         "Brown",
         Color(0xffa9866a)
     ),
     Puppy(
-        "Dog 4",
+        "Hunter",
         "https://images.pexels.com/photos/5321441/pexels-photo-5321441.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
         2,
         "Light brown",
         Color(0xffc7afaa)
     ),
     Puppy(
-        "Dog 5",
+        "Mabel",
         "https://images.pexels.com/photos/4597758/pexels-photo-4597758.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
         5,
         "Light brown",
         Color(0xffbf916d)
     ),
     Puppy(
-        "Dog 6",
+        "Parker",
         "https://images.pexels.com/photos/4695939/pexels-photo-4695939.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
         8,
         "Black",
