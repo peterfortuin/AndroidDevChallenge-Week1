@@ -15,6 +15,7 @@
  */
 package com.example.androiddevchallenge
 
+import androidx.compose.ui.graphics.Color
 import com.example.androiddevchallenge.model.Puppy
 
 fun getPuppies() = listOf(
@@ -22,36 +23,42 @@ fun getPuppies() = listOf(
         "Dog 1",
         "https://images.pexels.com/photos/936317/pexels-photo-936317.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
         2,
-        "Brown/White"
+        "Brown/White",
+        Color(0xffb4b2a6)
     ),
     Puppy(
         "Dog 2",
         "https://images.pexels.com/photos/179221/pexels-photo-179221.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
         3,
-        "Black/White"
+        "Black/White",
+        Color(0xff585e6a)
     ),
     Puppy(
         "Dog 3",
         "https://images.pexels.com/photos/1480913/pexels-photo-1480913.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
         6,
-        "Brown"
+        "Brown",
+        Color(0xffa9866a)
     ),
     Puppy(
         "Dog 4",
         "https://images.pexels.com/photos/5321441/pexels-photo-5321441.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
         2,
-        "Light brown"
+        "Light brown",
+        Color(0xffc7afaa)
     ),
     Puppy(
         "Dog 5",
         "https://images.pexels.com/photos/4597758/pexels-photo-4597758.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
         5,
-        "Light brown"
+        "Light brown",
+        Color(0xffbf916d)
     ),
     Puppy(
         "Dog 6",
         "https://images.pexels.com/photos/4695939/pexels-photo-4695939.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
         8,
-        "Black"
+        "Black",
+        Color(0xff4e4a47)
     ),
 )

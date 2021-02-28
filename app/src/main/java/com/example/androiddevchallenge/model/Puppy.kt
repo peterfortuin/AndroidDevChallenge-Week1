@@ -15,9 +15,12 @@
  */
 package com.example.androiddevchallenge.model
 
+import androidx.compose.ui.graphics.Color
+
 data class Puppy(
     val name: String,
     val picture: String,
     val age: Int,
-    val color: String
+    val color: String,
+    val toolbarColor: Color
 )

@@ -57,7 +57,8 @@ fun PuppyDetailsScreen(puppy: Puppy, navigateBack: () -> Unit) {
                     ) {
                         Icon(Icons.Filled.ArrowBack, "Back")
                     }
-                }
+                },
+                backgroundColor = puppy.toolbarColor
             )
         }
     ) {
@@ -99,7 +100,7 @@ fun PuppyDetailsScreen(puppy: Puppy, navigateBack: () -> Unit) {
 @Composable
 fun PuppyDetailsScreenLightPreview() {
     MyTheme {
-        PuppyDetailsScreen(Puppy("Puppy", "", 4, "Black")) {}
+        PuppyDetailsScreen(Puppy("Puppy", "", 4, "Black", Color(0xffbf916d))) {}
     }
 }
 
@@ -107,6 +108,6 @@ fun PuppyDetailsScreenLightPreview() {
 @Composable
 fun PuppyDetailsScreenDarkPreview() {
     MyTheme(darkTheme = true) {
-        PuppyDetailsScreen(Puppy("Puppy", "", 6, "Grey")) {}
+        PuppyDetailsScreen(Puppy("Puppy", "", 6, "Grey", Color(0xffbf916d))) {}
     }
 }
