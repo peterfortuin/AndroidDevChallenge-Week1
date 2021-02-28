@@ -27,6 +27,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -121,7 +122,8 @@ fun PuppyDetailsScreen(puppy: Puppy, navigateBack: () -> Unit) {
                     modifier = Modifier
                         .height(45.dp)
                         .weight(1f)
-                        .padding(end = 1.dp)
+                        .padding(end = 1.dp),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = puppy.buttonColor)
                 ) {
                     Text("Adopt me")
                 }
@@ -130,7 +132,8 @@ fun PuppyDetailsScreen(puppy: Puppy, navigateBack: () -> Unit) {
                     shape = RoundedCornerShape(0.dp, 0.dp, 0.dp, 0.dp),
                     modifier = Modifier
                         .height(45.dp)
-                        .padding(end = 1.dp)
+                        .padding(end = 1.dp),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = puppy.buttonColor)
                 ) {
                     Icon(Icons.Filled.Favorite, "Favorite")
                 }
@@ -139,7 +142,8 @@ fun PuppyDetailsScreen(puppy: Puppy, navigateBack: () -> Unit) {
                         Toast.makeText(context, "Sharing ${puppy.name}!", Toast.LENGTH_SHORT).show()
                     },
                     shape = RoundedCornerShape(0.dp, 12.dp, 12.dp, 0.dp),
-                    modifier = Modifier.height(45.dp)
+                    modifier = Modifier.height(45.dp),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = puppy.buttonColor)
                 ) {
                     Icon(Icons.Filled.Share, "Sharing")
                 }
@@ -152,7 +156,7 @@ fun PuppyDetailsScreen(puppy: Puppy, navigateBack: () -> Unit) {
 @Composable
 fun PuppyDetailsScreenLightPreview() {
     MyTheme {
-        PuppyDetailsScreen(Puppy("Puppy", "", 4, "Black", Color(0xffbf916d))) {}
+        PuppyDetailsScreen(Puppy("Puppy", "", 4, "Black", Color(0xffbf916d), Color(0xffbf916d))) {}
     }
 }
 
@@ -160,6 +164,6 @@ fun PuppyDetailsScreenLightPreview() {
 @Composable
 fun PuppyDetailsScreenDarkPreview() {
     MyTheme(darkTheme = true) {
-        PuppyDetailsScreen(Puppy("Puppy", "", 6, "Grey", Color(0xffbf916d))) {}
+        PuppyDetailsScreen(Puppy("Puppy", "", 6, "Grey", Color(0xffbf916d), Color(0xffbf916d))) {}
     }
 }

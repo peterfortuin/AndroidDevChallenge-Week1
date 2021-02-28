@@ -22,5 +22,6 @@ data class Puppy(
     val picture: String,
     val age: Int,
     val color: String,
-    val toolbarColor: Color
+    val toolbarColor: Color,
+    val buttonColor: Color
 )
