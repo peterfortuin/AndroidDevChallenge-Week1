@@ -16,6 +16,7 @@
 package com.example.androiddevchallenge.ui
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -89,7 +90,10 @@ fun PuppyCard(puppy: Puppy, isFirst: Boolean, isLast: Boolean, openPuppy: (Strin
                 end = 10.dp,
                 top = if (isFirst) 10.dp else 5.dp,
                 bottom = if (isLast) 10.dp else 5.dp
-            ),
+            )
+            .clickable {
+                openPuppy(puppy.name)
+            },
         elevation = 3.dp
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
@@ -104,17 +108,6 @@ fun PuppyCard(puppy: Puppy, isFirst: Boolean, isLast: Boolean, openPuppy: (Strin
                         .padding(start = 20.dp, top = 20.dp),
                     style = MaterialTheme.typography.h5
                 )
-
-                Button(
-                    onClick = {
-                        openPuppy(puppy.name)
-                    },
-                    Modifier
-                        .padding(start = 20.dp, top = 40.dp),
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.White), border = BorderStroke(0.dp, Color.White)
-                ) {
-                    Text(text = "Details")
-                }
             }
 
             val animationSpec = remember { LottieAnimationSpec.RawRes(R.raw.french_bulldog) }
